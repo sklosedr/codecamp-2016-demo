@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: CodeCamp2016Demo-service
+  labels:
+    app: CodeCamp2016Demo-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      name: CodeCamp2016Demo-http
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    name: CodeCamp2016Demo
