@@ -22,9 +22,9 @@
 
 <div class="form" *ngIf="formShowing">
 <md-card>
+		<form (submit)="createDog($event)">
 	<md-card-title>Create your dog's profile, because {{title}}</md-card-title>
 	<md-card-content>
-		<form (submit)="createDog($event)">
 			<md-input [(ngModel)]="createDogModel.name" name="name" placeholder="Name"></md-input>
 			<md-input [(ngModel)]="createDogModel.favoriteToy" name="favoriteToy" placeholder="Favorite toy"></md-input>
 			<md-input [(ngModel)]="createDogModel.description" name="description" placeholder="Description"></md-input>
@@ -35,12 +35,11 @@
           <div>
 			<md-checkbox [(ngModel)]="createDogModel.goodDog" name="goodDog" indeterminate="true">Is a good dog</md-checkbox>
           </div>
-          <button md-button type="submit" class="btn btn-default">Submit</button>
-		</form>	
 	</md-card-content>
 	<md-card-actions align="end">
-		<button md-raised-button color="accent">POST</button>
+		<button md-raised-button type="submit" color="accent">POST</button>
 	</md-card-actions>
+		</form>	
 </md-card>
 </div>
 

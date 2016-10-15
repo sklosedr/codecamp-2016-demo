@@ -24,7 +24,8 @@ import { DogsService  } from './dogs/dogs.service';
     MaterialModule.forRoot(),
     RouterModule.forRoot([
         { path: 'register', component: RegisterComponent },
-        { path: 'dogs', component: DogsComponent }
+        { path: 'dogs', component: DogsComponent },
+        { path: '', component: DogsComponent }
     ])
   ],
   providers: [ DogsService ],
