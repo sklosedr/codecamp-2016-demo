@@ -11,11 +11,16 @@ export class DogsComponent implements OnInit {
   errorMessage: string;
   dogs: Dog[];
   mode = 'Observable';
+  createDogModel = new Dog('Goofy', 'Micky Mouse', 'Friend of Micky Mouse', true);
     
   constructor(private dogsService: DogsService) { }
 
   ngOnInit() {
       this.getDogs();
+  }
+    
+  createDog($event) {
+      this.dogsService.createDog(this.createDogModel);
   }
     
   getDogs() {

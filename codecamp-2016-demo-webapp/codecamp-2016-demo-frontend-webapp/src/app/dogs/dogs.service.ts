@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
 
@@ -9,8 +9,18 @@ import { Dog } from './dogs';
 export class DogsService {
         
   private url = 'http://localhost:8080/dogs';
+    
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
+    
+  createDog(dog: Dog) {
+    this.http
+        .post(this.url, JSON.stringify(dog), {headers: this.headers})
+        .toPromise()
+        .then(() => dog)
+        .catch(this.handleError);
+  }
     
   getDogs(): Observable<Dog[]> {
       return this.http.get(this.url)
