@@ -14,11 +14,10 @@ export class DogsService {
 
   constructor(private http: Http) { }
     
-  createDog(dog: Dog) {
-    this.http
+  createDog(dog: Dog): Observable<Dog> {
+    return this.http
         .post(this.url, JSON.stringify(dog), {headers: this.headers})
-        .toPromise()
-        .then(() => dog)
+        .map(this.extractData)
         .catch(this.handleError);
   }
     

@@ -12,23 +12,28 @@ import com.nextlevel.codecamp.model.dog.Dog;
 @Service
 public class DogService {
 	
+	private static Long LAST_ID = 0L;
 	private List<Dog> dogs = new ArrayList<>();
 	
 	@PostConstruct
 	private void init() {
+		initDog(getNextId(), "Porter", "Very ipsum such dolor amet wow very divs very content", "wood", false);
+		initDog(getNextId(), "Mal", "Very ipsum such dolor amet wow very divs very content", "balls", true);
+	}
+	
+	private Long getNextId() {
+		LAST_ID++;
+		return LAST_ID;
+	}
+	
+	private void initDog(Long id, String name, String description, String favoriteToy, boolean goodDog) {
 		Dog dog = new Dog();
-		dog.setName("Porter");
-		dog.setDescription("Very ipsum such dolor amet wow very divs very content");
-		dog.setFavoriteToy("wood");
-		dog.setGoodDog(false);
+		dog.setId(id);
+		dog.setName(name);
+		dog.setDescription(description);
+		dog.setFavoriteToy(favoriteToy);
+		dog.setGoodDog(goodDog);
 		dogs.add(dog);
-		
-		Dog dog2 = new Dog();
-		dog2.setName("Mal");
-		dog2.setDescription("Very ipsum such dolor amet wow very divs very content");
-		dog2.setFavoriteToy("balls");
-		dog2.setGoodDog(true);
-		dogs.add(dog2);
 	}
 	
 	public List<Dog> getDogs() {
@@ -36,6 +41,7 @@ public class DogService {
 	}
 	
 	public Dog createDog(Dog dog) {
+		dog.setId(getNextId());
 		dogs.add(dog);
 		return dog;
 	}

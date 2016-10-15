@@ -2,10 +2,18 @@ package com.nextlevel.codecamp.model.dog;
 
 public class Dog {
 	
+	private Long id;
 	private String name;
 	private String favoriteToy;
 	private String description;
 	private boolean goodDog;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public String getName() {
 		return name;

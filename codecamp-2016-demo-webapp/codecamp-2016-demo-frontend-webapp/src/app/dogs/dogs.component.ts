@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DogsService } from './dogs.service';
 import { Dog } from './dogs';
 
@@ -11,16 +12,25 @@ export class DogsComponent implements OnInit {
   errorMessage: string;
   dogs: Dog[];
   mode = 'Observable';
-  createDogModel = new Dog('Goofy', 'Micky Mouse', 'Friend of Micky Mouse', true);
+  formShowing : boolean;
+  createDogModel = new Dog(0, 'Goofy', 'Micky Mouse', 'Friend of Micky Mouse', true);
     
-  constructor(private dogsService: DogsService) { }
+  constructor(private dogsService: DogsService) {
+      this.formShowing = false;
+  }
 
   ngOnInit() {
       this.getDogs();
   }
     
   createDog($event) {
-      this.dogsService.createDog(this.createDogModel);
+      let createdDog: Dog;
+      this.dogsService.createDog(this.createDogModel)
+        .subscribe(
+            dog => this.dogs.push(dog),
+            error => this.errorMessage = <any>error);
+      this.createDogModel = new Dog(0, 'Goofy', 'Micky Mouse', 'Friend of Micky Mouse', true);
+      this.formShowing = false;
   }
     
   getDogs() {
