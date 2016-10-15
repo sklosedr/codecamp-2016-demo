@@ -1,3 +1,43 @@
-<p>
-  dogs works!
-</p>
+<md-sidenav-layout fullscreen>
+  <md-sidenav #sidenav>
+    <md-nav-list>
+      <a md-list-item *ngFor="let view of views">
+        <span md-line>Name</span>
+        <span md-line class="secondary">Text</span>
+      </a>
+    </md-nav-list>
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    Puppy Love
+    <button md-fab (click)="formShowing=!formShowing">
+      <md-icon>add</md-icon>
+    </button>
+  </md-toolbar>
+
+<div class="form" *ngIf="formShowing">
+<md-card>
+	<md-card-title>Create your dog's profile, because {{title}}</md-card-title>
+	<md-card-content>
+		<form>
+			<md-input placeholder="Name"></md-input>
+			<md-input placeholder="Favorite toy"></md-input>
+			<md-input placeholder="Description"></md-input>
+			<md-radio-group>
+				<md-radio-button value="Looking for love">Looking for love</md-radio-button>
+				<md-radio-button value="Just browsing">Just browsing</md-radio-button>
+          </md-radio-group>
+          <div>
+			<md-checkbox indeterminate="true">Is a good dog</md-checkbox>
+          </div>
+		</form>
+	</md-card-content>
+	<md-card-actions align="end">
+		<button md-raised-button color="accent">POST</button>
+	</md-card-actions>
+</md-card>
+</div>
+
+</md-sidenav-layout>
