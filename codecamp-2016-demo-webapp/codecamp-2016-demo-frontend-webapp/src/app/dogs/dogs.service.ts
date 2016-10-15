@@ -3,10 +3,7 @@ import { Http, Response } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
 
-export class Dog {
-    constructor(public name: string, public favoriteToy: string, public description: string, public goodDog: boolean) {        
-    }
-}
+import { Dog } from './dogs';
 
 @Injectable()
 export class DogsService {

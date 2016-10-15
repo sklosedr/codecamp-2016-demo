@@ -8,7 +8,7 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { DogsComponent } from './dogs/dogs.component';
-import { DogsService, Dog  } from './dogs/dogs.service';
+import { DogsService  } from './dogs/dogs.service';
 
 @NgModule({
   declarations: [
