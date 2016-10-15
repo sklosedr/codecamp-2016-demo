@@ -40,4 +40,13 @@
 </md-card>
 </div>
 
+<div>
+<ul>
+  <li *ngFor="let dog of dogs">
+    {{dog.name}}
+  </li>
+</ul>
+</div>
+<div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
 </md-sidenav-layout>
