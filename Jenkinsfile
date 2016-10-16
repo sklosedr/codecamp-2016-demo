@@ -23,7 +23,7 @@ node('build-slave') {
     sh "mvn package"
 
     stage 'Bake Docker Image'
-    sh("docker build -t ${imageTag} .")
+    sh("docker build -t ${imageTag} codecamp-2016-demo-webapp")
 
     stage 'Push images to GCR'
     sh("gcloud auth activate-service-account --key-file /opt/config/gcloud-svc-account.json")
