@@ -31,7 +31,7 @@ node('build-slave') {
     sh("gcloud docker push ${imageTag}")
 
     stage 'Deploy latest version'
-    sh("sed -i.bak 's#eu.gcr.io/com.next-level-integration/codecamp-2016-demo:1.0.0#${imageTag}#' ./k8s/deployments/app-deployment.yaml")
+    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/codecamp-2016-demo:1.0.0#${imageTag}#' ./k8s/deployments/app-deployment.yaml")
     sh("kubectl apply -f k8s/deployments/app-deployment.yaml")
     sh("kubectl apply -f k8s/services/app-service.yaml")
 
