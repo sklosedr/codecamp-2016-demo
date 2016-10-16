@@ -1,49 +1,32 @@
 package com.nextlevel.codecamp.webapp.dog.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.nextlevel.codecamp.model.dog.Dog;
 
 @Service
 public class DogService {
 	
-	private static Long LAST_ID = 0L;
-	private List<Dog> dogs = new ArrayList<>();
+	private static String DOG_SERVICE_URL = "http://localhost:8081/dogs";
+	
+	private RestTemplate restTemplate;
 	
 	@PostConstruct
-	private void init() {
-		initDog(getNextId(), "Porter", "Very ipsum such dolor amet wow very divs very content", "wood", false);
-		initDog(getNextId(), "Mal", "Very ipsum such dolor amet wow very divs very content", "balls", true);
-	}
-	
-	private Long getNextId() {
-		LAST_ID++;
-		return LAST_ID;
-	}
-	
-	private void initDog(Long id, String name, String description, String favoriteToy, boolean goodDog) {
-		Dog dog = new Dog();
-		dog.setId(id);
-		dog.setName(name);
-		dog.setDescription(description);
-		dog.setFavoriteToy(favoriteToy);
-		dog.setGoodDog(goodDog);
-		dogs.add(dog);
+	public void init() {
+		restTemplate = new RestTemplate();
 	}
 	
 	public List<Dog> getDogs() {
-		return dogs;
+		return restTemplate.getForObject(DOG_SERVICE_URL, List.class);
 	}
 	
 	public Dog createDog(Dog dog) {
-		dog.setId(getNextId());
-		dogs.add(dog);
-		return dog;
+		return restTemplate.postForObject(DOG_SERVICE_URL, dog, Dog.class);
 	}
 
 }

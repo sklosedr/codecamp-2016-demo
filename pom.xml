@@ -26,12 +26,24 @@
 				<groupId>com.next-level-integration</groupId>
 				<version>${codecamp-2016-demo.version}</version>
 			</dependency>
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-collections4</artifactId>
+			    <version>4.1</version>
+			</dependency>
+			<dependency>
+			    <groupId>javax.persistence</groupId>
+			    <artifactId>persistence-api</artifactId>
+			    <version>1.0</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
     
 
 	<modules>
+		<module>codecamp-2016-demo-dog-service</module>
 		<module>codecamp-2016-demo-model</module>
+		<module>codecamp-2016-demo-service-registry</module>
 		<module>codecamp-2016-demo-webapp</module>
 	</modules>
  
