@@ -35,7 +35,7 @@ node('build-slave') {
     sh("ls -la");
     sh("ls -la k8s.deployments");
     sh("ls -la k8s.services");
-    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/GCP_PROJECT:1.0.0#${imageTag}#' ./k8s/deployments/app-deployment.yaml")
+    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/GCP_PROJECT:1.0.0#${imageTag}#' k8s.deployments/app-deployment.yaml")
     sh("pwd")
     sh("ls -la");
     sh("ls -la k8s.deployments");
