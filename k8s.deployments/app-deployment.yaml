@@ -1,17 +1,17 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: codecampdemo-deploy
+  name: ccdemo-deploy
 spec:
   replicas: 1
   template:
     metadata:
-      name: codecampdemo
+      name: ccdemo
       labels:
-        name: codecampdemo
+        name: ccdemo
     spec:
       containers:
-      - name: codecampdemo
+      - name: ccdemo
         image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0
         imagePullPolicy: Always
         readinessProbe:
@@ -20,5 +20,5 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 5
         ports:
-        - name: codecampdemo-http
+        - name: ccdemo-http
           containerPort: 8080
