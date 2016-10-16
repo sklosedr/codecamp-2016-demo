@@ -35,9 +35,7 @@ node('build-slave') {
     sh("gcloud docker push ${imageTag}-web")
 
     stage 'Deploy latest version'
-    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}-sr#' k8s.deployments/app-deployment.yaml")
-    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}-ds#' k8s.deployments/app-deployment.yaml")
-    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}-web#' k8s.deployments/app-deployment.yaml")
+    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}#' k8s.deployments/app-deployment.yaml")
     sh("kubectl apply -f k8s.deployments/app-deployment.yaml")
     sh("kubectl apply -f k8s.services/app-service.yaml")
 

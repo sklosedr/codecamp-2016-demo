@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: ccdemo-sr
-        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0
+        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0-sr
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
@@ -23,7 +23,7 @@ spec:
         - name: ccdemo-sr-http
           containerPort: 8082
       - name: ccdemo-ds
-        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0
+        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0-ds
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
@@ -34,7 +34,7 @@ spec:
         - name: ccdemo-ds-http
           containerPort: 8081
       - name: ccdemo-web
-        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0
+        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0-web
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
