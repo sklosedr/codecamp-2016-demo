@@ -1,0 +1,14 @@
+# Spring Properties
+spring:
+  application:
+     name: backend-webapp
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
+
+# HTTP Server
+server:
+  port: 8080   # HTTP (Tomcat) port

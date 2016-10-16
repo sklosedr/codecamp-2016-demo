@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DogServiceApplication {
 
     public static void main(String[] args) {
+    	System.setProperty("spring.config.name", "dog-server");
         SpringApplication.run(DogServiceApplication.class, args);
     }
 }

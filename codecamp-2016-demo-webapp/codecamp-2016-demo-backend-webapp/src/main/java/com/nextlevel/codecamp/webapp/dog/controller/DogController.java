@@ -19,13 +19,13 @@ public class DogController {
 	private DogService dogService;
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping(path="/dogs", method = RequestMethod.POST)
+	@RequestMapping(path="/dogs", method = RequestMethod.POST, produces="application/json")
 	public Dog createDog(@RequestBody Dog dog) {
 		return dogService.createDog(dog);
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping("/dogs")
+	@RequestMapping(path="/dogs", produces="application/json")
 	public List<Dog> getDogs() {
 		return dogService.getDogs();
 	}
