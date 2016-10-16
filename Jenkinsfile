@@ -40,8 +40,8 @@ node('build-slave') {
     sh("ls -la");
     sh("ls -la k8s.deployments");
     sh("ls -la k8s.services");
-    sh("kubectl apply -f k8s/deployments/app-deployment.yaml")
-    sh("kubectl apply -f k8s/services/app-service.yaml")
+    sh("kubectl apply -f k8s.deployments/app-deployment.yaml")
+    sh("kubectl apply -f k8s.services/app-service.yaml")
 
     stage 'Extract service IP address'
     // Execute and wait for external service to become available
