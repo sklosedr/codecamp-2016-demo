@@ -23,15 +23,21 @@ node('build-slave') {
     sh "mvn package"
 
     stage 'Bake Docker Image'
-    sh("docker build -t ${imageTag} codecamp-2016-demo-webapp")
+    sh("docker build -t ${imageTag}-sr codecamp-2016-demo-service-registry")
+    sh("docker build -t ${imageTag}-ds codecamp-2016-demo-dog-service")
+    sh("docker build -t ${imageTag}-web codecamp-2016-demo-webapp")
 
     stage 'Push images to GCR'
     sh("gcloud auth activate-service-account --key-file /opt/config/gcloud-svc-account.json")
     sh("gcloud config set project ${project}")
-    sh("gcloud docker push ${imageTag}")
+    sh("gcloud docker push ${imageTag}-sr")
+    sh("gcloud docker push ${imageTag}-ds")
+    sh("gcloud docker push ${imageTag}-web")
 
     stage 'Deploy latest version'
-    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}#' k8s.deployments/app-deployment.yaml")
+    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}-sr#' k8s.deployments/app-deployment.yaml")
+    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}-ds#' k8s.deployments/app-deployment.yaml")
+    sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}-web#' k8s.deployments/app-deployment.yaml")
     sh("kubectl apply -f k8s.deployments/app-deployment.yaml")
     sh("kubectl apply -f k8s.services/app-service.yaml")
 

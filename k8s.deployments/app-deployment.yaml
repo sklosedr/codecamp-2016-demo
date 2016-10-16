@@ -11,8 +11,30 @@ spec:
         name: ccdemo
     spec:
       containers:
-      - name: ccdemo
-        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0
+      - name: ccdemo-sr
+        image: eu.gcr.io/GCP_PROJECT/APP_NAME-sr:1.0.0
+        imagePullPolicy: Always
+        readinessProbe:
+          tcpSocket:
+            port: 8082
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        ports:
+        - name: ccdemo-sr-http
+          containerPort: 8082
+      - name: ccdemo-ds
+        image: eu.gcr.io/GCP_PROJECT/APP_NAME-ds:1.0.0
+        imagePullPolicy: Always
+        readinessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        ports:
+        - name: ccdemo-ds-http
+          containerPort: 8081
+      - name: ccdemo-web
+        image: eu.gcr.io/GCP_PROJECT/APP_NAME-web:1.0.0
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
@@ -20,5 +42,6 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 5
         ports:
-        - name: ccdemo-http
+        - name: ccdemo-web-http
           containerPort: 8080
+
