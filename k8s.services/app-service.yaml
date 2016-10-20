@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 80
       name: ccdemo-http
-      targetPort: 4200
+      targetPort: 8080
       protocol: TCP
   selector:
     name: ccdemo

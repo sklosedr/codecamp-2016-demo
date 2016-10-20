@@ -44,15 +44,3 @@ spec:
         ports:
         - name: ccdemo-bweb-http
           containerPort: 8080
-      - name: ccdemo-fweb
-        image: eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0-fweb
-        imagePullPolicy: Always
-        readinessProbe:
-          tcpSocket:
-            port: 4200
-          initialDelaySeconds: 10
-          timeoutSeconds: 5
-        ports:
-        - name: ccdemo-bweb-http
-          containerPort: 4200
-
