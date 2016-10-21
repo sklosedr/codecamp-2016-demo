@@ -8,8 +8,8 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
-      name: ccdemo-http
+      name: ccdemo-bwebhttp
       targetPort: 8080
       protocol: TCP
   selector:
-    name: ccdemo
+    name: ccdemo-bweb
