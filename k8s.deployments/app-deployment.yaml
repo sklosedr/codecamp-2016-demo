@@ -42,5 +42,5 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 5
         ports:
-        - name: ccdemo-bweb-http
+        - name: ccdemo-bwebhttp
           containerPort: 8080
