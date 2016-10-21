@@ -26,7 +26,7 @@ node('build-slave') {
     sh("docker build -t ${imageTag}-sr codecamp-2016-demo-service-registry")
     sh("docker build -t ${imageTag}-ds codecamp-2016-demo-dog-service")
     sh("docker build -t ${imageTag}-bweb codecamp-2016-demo-webapp/codecamp-2016-demo-backend-webapp")
-    sh("docker build -t ${imageTag}-fweb codecamp-2016-demo-webapp/codecamp-2016-demo-frontend-webapp")
+//    sh("docker build -t ${imageTag}-fweb codecamp-2016-demo-webapp/codecamp-2016-demo-frontend-webapp")
 
     stage 'Push images to GCR'
     sh("gcloud auth activate-service-account --key-file /opt/config/gcloud-svc-account.json")
@@ -34,7 +34,7 @@ node('build-slave') {
     sh("gcloud docker push ${imageTag}-sr")
     sh("gcloud docker push ${imageTag}-ds")
     sh("gcloud docker push ${imageTag}-bweb")
-    sh("gcloud docker push ${imageTag}-fweb")
+//    sh("gcloud docker push ${imageTag}-fweb")
 
     stage 'Deploy latest version'
     sh("sed -i.bak 's#eu.gcr.io/GCP_PROJECT/APP_NAME:1.0.0#${imageTag}#' k8s.deployments/app-deployment.yaml")
