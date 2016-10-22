@@ -18,4 +18,6 @@ EXPOSE 4200
 #EXPOSE 49153
 
 #ENTRYPOINT ["/bin/bash"]
-CMD [ "npm", "start" ]
+#CMD [ "npm", "start" ]
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]

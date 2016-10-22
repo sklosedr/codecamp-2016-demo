@@ -49,9 +49,9 @@ spec:
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
-            port: 8080
+            port: 4200
           initialDelaySeconds: 10
           timeoutSeconds: 5
         ports:
         - name: ccdemo-fwebhttp
-          containerPort: 8080
+          containerPort: 4200
