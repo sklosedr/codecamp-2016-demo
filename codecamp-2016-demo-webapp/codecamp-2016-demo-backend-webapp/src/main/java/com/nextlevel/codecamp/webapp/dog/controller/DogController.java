@@ -18,13 +18,13 @@ public class DogController {
 	@Autowired
 	private DogService dogService;
 	
-	@CrossOrigin(origins = "http://130.211.85.174:4200")
+	@CrossOrigin(origins = "http://dogs.level365.de:4200")
 	@RequestMapping(path="/dogs", method = RequestMethod.POST, produces="application/json")
 	public Dog createDog(@RequestBody Dog dog) {
 		return dogService.createDog(dog);
 	}
 	
-	@CrossOrigin(origins = "http://130.211.85.174:4200")
+	@CrossOrigin(origins = "http://dogs.level365.de:4200")
 	@RequestMapping(path="/dogs", produces="application/json")
 	public List<Dog> getDogs() {
 		return dogService.getDogs();
