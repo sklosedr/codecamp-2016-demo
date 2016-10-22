@@ -8,7 +8,7 @@ import { Dog } from './dogs';
 @Injectable()
 export class DogsService {
         
-  private url = 'http://localhost:8080/dogs';
+  private url = 'http://130.211.85.174:8080/dogs';
     
   private headers = new Headers({'Content-Type': 'application/json'});
 
